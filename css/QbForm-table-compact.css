@@ -1,0 +1,553 @@
+/*
+// Naming of element IDs and classes:
+//
+//  Element : '_qbf'    +    't'    +    'h/d/f/a'   + 'l,c,r,i'
+//            prefix        module     vertical pos.   hor. position
+//           (QbForm)      (Table)    (header/data/   left,center,right,icon
+//                                     footer/append)  
+//
+//        LEFT (static)   Data (scrolled)   RIGHT (static)   ICONS
+//        +------------+-------------------+-------------+-------------+
+// HEADER | _qbfthl... | _qbfthc....       | _qbfthr.... | _qbfthi.... |
+//        +------------+-------------------+-------------+-------------+
+// DATA   | _qbftdl... | _qbftdc....       | _qbftdr.... | _qbftdi.... |
+//        +------------+-------------------+-------------+-------------+
+// FOOTER | _qbftfl... | _qbftfc....       | _qbftfr.... | _qbftfi.... |
+//        +------------+-------------------+-------------+-------------+
+// APPEND | _qbftal... | _qbftac....       | _qbftar.... | _qbftai.... |
+//        +------------+-------------------+-------------+-------------+
+//
+*/
+
+/* -------------------------------------- */
+/* Main Div                               */
+/* -------------------------------------- */
+._qbft-compact_cell {
+  flex-basis: 100%;
+}
+
+._qbft-compact {
+  position: relative;
+  font-size: 11pt;
+  color: #454f54;
+}
+
+/*
+._qbft-compact_mainTable {
+}
+*/
+
+._qbft-compact_mainTable > div {
+  position: absolute;
+  display: inline-block;
+}
+
+._qbft-compact input::-moz-selection { /* Code for Firefox */
+  color: white;
+  background: dodgerblue;
+}
+
+._qbft-compact input::selection {
+  color: white;
+  background: dodgerblue;
+}
+
+/* -------------------------------------- */
+/* Header                                 */
+/* -------------------------------------- */
+
+/* -- HEADER - main -- */
+
+._qbfth-compact {
+  border-bottom: none;
+}
+
+._qbfth-compact-active:hover {
+  background-color: #f0f0f5;
+}
+
+._qbfth-compact-sortable {
+  cursor: s-resize;  
+}
+
+._qbfth-compact_separator {
+  position: relative;
+  overflow: visible;
+  width: 1px;
+  min-width: 1px;
+  max-width: 1px;
+  height: 100%;
+  padding: 0px;
+  background-color: lightgrey !important;
+  overflow: visible;
+  background-image: none !important;
+}
+
+._qbfth-compact_separator_safeZone {
+  position: absolute;
+  left: -25px;
+  right: -25px;
+  top: -15px;
+  bottom: -15px;
+  touch-action: none;
+  pointer-events: none;
+}
+
+._qbfth-compact_separator_hotSpot {
+  position: absolute;
+  left: -15px;
+  right: -15px;
+  top: 0px;
+  height: 100%;
+  opacity: 0;
+}
+
+._qbfth-compact_separator_box {
+  position: absolute;
+  border-right: solid 2px blue;
+  background-color: none;
+  height: 100%;
+  margin-left: 3px;
+  z-index: 10000;
+  pointer-events: none;
+  touch-action: none;
+  visibility: hidden;
+  height: 0px;
+}
+
+._qbfth-compact_separator_box_active {
+  visibility: visible;
+  height: 100%;
+}
+
+/* -- HEADER - left -- */
+
+._qbfthl-compact_mainSubTable {
+  border-top: solid 2px #73838c;
+  border-left: solid 2px #73838c;
+  border-bottom: solid 2px #b3b3b3;
+  background-color: #b3b3b3;
+}
+
+._qbfthl-compact {
+  display: grid;
+  grid-template-columns: 20px 30px 45px;
+  column-gap: 1px;
+  grid-column-gap: 1px;
+  row-gap: 1px;
+  grid-row-gap: 1px;
+}
+
+._qbfthl-compact > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 26px;
+  background-color: #f0f0f5;
+}
+
+._qbfthl-compact_text {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  pointer-events: none;
+  color: darkslategray;
+}
+
+/* Header - center */
+
+._qbfthc-compact_mainSubTable {
+  border-top: solid 2px #73838c;
+  border-bottom: solid 1px #b3b3b3;
+  border-left: solid 2px #b3b3b3;
+  border-right: solid 2px #73838c;
+  background-color: #f0f0f5;
+}
+
+._qbfthc-compact {
+  display: grid;
+  grid-template-columns: auto 1px auto 1px auto 1px auto 1px;
+}
+
+._qbfthc-compact > div {
+  height: 26px;
+  border-bottom: solid 1px #b3b3b3;
+}
+
+._qbfthc-compact_text {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: s-resize;
+  pointer-events: none;
+  font-family: Calibri, Helvetica, sans-serif;
+  font-size: 12pt;
+  color: darkslategray;
+}
+
+._qbfthc-compact_arrowDown {
+  width: 24px;
+  height: 24px;
+  background-image: url('data:image/svg+xml;utf8,<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg"><g><polyline points="6,9 12,15 18,9" stroke="steelblue" stroke-width="4" fill="none" /></g></svg>');
+}
+
+._qbfthc-compact_arrowUp {
+  width: 24px;
+  height: 24px;
+  background-image: url('data:image/svg+xml;utf8,<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg"><g><polyline points="6,15 12,9 18,15" stroke="steelblue" stroke-width="4" fill="none" /></g></svg>');
+}
+
+/* -------------------------------------- */
+/* Filters                                */
+/* -------------------------------------- */
+
+._qbftFilterCell-compact {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-bottom: solid 1px #b3b3b3;
+  padding-bottom: 2px;
+  overflow: hidden;
+}
+
+/* Filter - QbfString */
+._qbftFilterCell-compact_QbfString > input {
+  flex : 1;
+  width: 100%;
+  height: 20px;
+  border: solid 1px #b3b3b3;
+  background-color: white;
+  outline: none;
+}
+._qbftFilterCell-compact_QbfString > input:focus {
+  background-color: lemonchiffon;
+}
+
+/* Filter - QbfInteger */
+._qbftFilterCell-compact_QbfInteger > select {
+  width: 40px !important;
+  height: 24px;
+  background-position: left;
+  padding-left: 25px;
+  padding-right: 0px;
+}
+._qbftFilterCell-compact_QbfInteger > input {
+  width: calc( 100% - 40px ) !important;
+  height: 20px;
+  border: solid 1px #b3b3b3;
+  background-color: white;
+  outline: none;
+}
+._qbftFilterCell-compact_QbfInteger > input:focus {
+  background-color: lemonchiffon;
+}
+
+/* -------------------------------------- */
+/* Data                                   */
+/* -------------------------------------- */
+
+._qbftdl-compact_mainSubTable {
+  border-top: solid 1px #b3b3b3;
+  border-bottom: solid 2px #73838c;
+  border-left: solid 2px #73838c;
+  background-color: darkgrey;
+}
+
+._qbftdl-compact {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 20px 30px 45px;
+  column-gap: 1px;
+  grid-column-gap: 1px;
+  row-gap : 1px;
+  grid-row-gap : 1px;
+}
+
+._qbftdl-compact > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f5;
+}
+
+._qbftdl-compact > div::selection {color:currentColor;background:transparent}
+._qbftdl-compact > div::moz-selection {color:currentColor;background:transparent}
+
+._qbftdl-compact_highlight_standard {
+  background-color: #c9d7e8 !important;
+}
+
+._qbftdl-compact_highlight_delete {
+  background-color: #fdedec !important;
+}
+
+._qbftdl-compact > div:hover {
+  background-color: lightsteelblue !important;
+}
+
+/* --- Data Center (scrolled) --- */
+
+._qbftdc-compact_mainSubTable {
+  background-color: #b3b3b3;
+  border-top: solid 1px #b3b3b3;
+  border-left: solid 2px #b3b3b3;
+  border-bottom: solid 2px #73838c;
+  border-right: solid 3px #73838c;
+}
+
+._qbftdc-compact {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  column-gap: 1px;
+  grid-column-gap: 1px;
+  row-gap: 1px;
+  grid-row-gap: 1px;
+}
+
+._qbftdc-compact > div {
+  background-color: #fcfcff;
+  position: relative;
+}
+
+._qbftdc-compact > div > div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+._qbftdc-compact_highlight_standard {
+  background-color: #dbe4f0 !important;
+}
+
+._qbftdc-compact_highlight_delete {
+  background-color: #fdedec !important;
+}
+
+
+/* Specific for element incuding DATA field (QbfString, QbfPassword, QbfInteger, ...) */
+/* -> All classes that extends QbfInputAbstract                                       */
+
+._qbftdc-compact_input {
+  display: flex;
+  background-color: #fcfcff;
+  padding-left: 2px;
+  padding-right: 2px;
+  border: solid 2px rgba(0,0,0,0);
+  width: 100%;  
+  height: calc(100% - 4px);
+}
+
+._qbftdc-compact_input_left {
+  padding-top: 1px;
+}
+
+._qbftdc-compact_input_right {
+  padding-top: 1px;
+}
+
+._qbftdc-compact_input input {
+  width: 100%;
+  background: none;
+  border: none;
+  outline: none;
+  font-size:inherit;
+  color: inherit;
+}
+
+._qbftdc-compact_input_highlight_standard {
+  background-color: #dbe4f0  !important;
+}
+
+._qbftdc-compact_input_highlight_delete {
+  background-color: #fdedec !important;
+}
+
+._qbftdc-compact_input:hover {
+  border-color: cornflowerblue !important ;
+}
+
+._qbftdc-compact_input_focus {
+  /* background-color: #fdebd0 !important; */
+  border-color: cornflowerblue;
+}
+
+._qbftdc-compact_input_listIcon {
+  background-color: rgba(0,0,0,0);
+  background-image: url('data:image/svg+xml;utf8,<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg"><g><polyline points="6,9 12,15 18,9" stroke="grey" stroke-width="4" fill="none" /></g></svg>');
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+  position: absolute;
+  top: -1px;
+  height: 100%;
+  /* width is recalculated even if the element is used with 'display:inline' */
+  width: 18px;
+  margin-top: 1px;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+._qbftdc-compact_input_listIcon:hover {
+  background-image: url('data:image/svg+xml;utf8,<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg"><g><polyline points="6,9 12,15 18,9" stroke="steelblue" stroke-width="4" fill="none" /></g></svg>');
+}
+
+._qbftdc-compact_input_eyeIcon_on {
+  background-color: lightpink;
+  background-image: url('data:image/svg+xml;utf8,<svg width="24" height="24" fill="darkred" xmlns="http://www.w3.org/2000/svg"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>');
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+  position: absolute;
+  top: -1px;
+  height: 100%;
+  /* width is recalculated even if the element is used with 'display:inline' */
+  width: 18px;
+  margin-top: 1px;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+._qbftdc-compact_input_eyeIcon_on:hover {
+  background-color: lightsteelblue;
+}
+
+._qbftdc-compact_input_eyeIcon_off {
+  background-color: rgba(0,0,0,0);
+  background-image: url('data:image/svg+xml;utf8,<svg width="24" height="24" fill="grey" xmlns="http://www.w3.org/2000/svg"><path d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46A11.804 11.804 0 0 0 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78l3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z"/></svg>');
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+  position: absolute;
+  top: -1px;
+  height: 100%;
+  /* width is recalculated even if the element is used with 'display:inline' */
+  width: 18px;
+  margin-top: 1px;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+._qbftdc-compact_input_eyeIcon_off:hover {
+  background-image: url('data:image/svg+xml;utf8,<svg width="24" height="24" fill="cornflowerblue" xmlns="http://www.w3.org/2000/svg"><path d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46A11.804 11.804 0 0 0 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78l3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z"/></svg>');
+}
+
+/* --- Right --- */
+
+/* --- Icon --- */
+
+._qbftdi-compact_delete {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  width: 30px;
+  padding-left: 10px;
+  border-bottom: solid 1px rgba(0,0,0,0);
+}
+
+._qbftdi-compact_delete > div {
+  width: 18px;
+  height: 18px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px"><circle fill="%23b3b3b3" cx="9" cy="9" r="9"/><line x1="5" y1="5" x2="13" y2="13" stroke="white" stroke-width="4"/><line x1="5" y1="13" x2="13" y2="5" stroke="white" stroke-width="3"/></svg>');
+}
+
+._qbftdi-compact_delete:hover > div {
+  width: 20px;
+  height: 20px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"><circle fill="%23F44336" cx="10" cy="10" r="10"/><line x1="5" y1="5" x2="15" y2="15" stroke="white" stroke-width="4"/><line x1="5" y1="15" x2="15" y2="5" stroke="white" stroke-width="4"/></svg>');
+}
+
+
+/* -------------------------------------- */
+/* Footer                                 */
+/* -------------------------------------- */
+
+/* --- TO DO --- */
+
+/* -------------------------------------- */
+/* Append                                 */
+/* -------------------------------------- */
+
+/* --- Append Center --- */
+
+._qbfta-compact {
+  background: none;
+}
+
+/* --- Append Center --- */
+
+._qbftac-compact {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  margin-top: 5px;
+  border: solid 2px darkslategrey;
+  margin-bottom: 2px;
+  column-gap: 1px;
+  grid-column-gap: 1px;
+  background-color: #b3b3b3;
+  overflow: hidden;
+}
+
+._qbftac-compact > div {
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  overflow: hidden;
+  position: relative;
+}
+
+._qbftac-compact > div > div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- Append Right --- */
+
+/* --- Append Icon --- */
+
+._qbftai-compact {
+  padding-top: 4px;
+}
+
+._qbftai-compact input {
+  width: 50px;
+  height: 25px;
+  margin-top: 3px;
+  margin-left: 5px;
+  text-align: center;
+  font-size: 16pt;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(to bottom,#84b5df,#4a7aa4);
+  border: solid 2px #4a7aa4;
+  border-radius: 5px;
+  line-height: 3px;
+  padding-top: 0px;
+  outline: none;
+}
+
+._qbftai-compact input:hover {
+  background: linear-gradient(to bottom,#b6d8f7,#6591b7);
+}
+
+._qbftai-compact input:focus {
+  border-color: #4d4dff;
+  background: linear-gradient(to bottom,#b6d8f7,#6591b7);
+}
