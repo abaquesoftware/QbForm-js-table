@@ -1,5 +1,6 @@
 import QbForm from "../QbfModule/QbForm"
 
+import QbfElement from "../QbfModule/QbfElement"
 import QbfGridAbstract from "./QbfGridAbstract"
 import QbfGridColumn from "./QbfGridColumn"
 import QbfGridRow from "./QbfGridRow"
@@ -7,6 +8,27 @@ import QbfGridRow from "./QbfGridRow"
 // ===============================================================
 export default class QbfGridAppendRow extends QbfGridRow {
 // ===============================================================
+
+  // --------------------------------------------------------------
+  public static initWithDefaultValues(grid: QbfGridAbstract): void {
+  // --------------------------------------------------------------
+    if (grid.appendRow) {
+      grid.appendQbfRow = new QbfGridAppendRow(grid.qbForm, grid, "QbfGrid_append_" + grid.index,
+                                               "UNKNOWN", false, null )
+      grid.appendQbfRow.isAppendRow = true
+      grid.appendQbfRow.updateDisplay()
+    }
+  }
+
+  // --------------------------------------------------------------
+  public updateDisplay(): void {
+  // --------------------------------------------------------------
+    const grid = this.parent as QbfGridAbstract
+    const centerDiv = QbForm.getElementById("_qbftac" + grid.index)
+    if (centerDiv) {
+      centerDiv.innerHTML = this.buildCenterHtml()
+    }
+  }
 
   // --------------------------------------------------------------
   public buildLeftDivHtml(): string {

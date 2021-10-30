@@ -4,6 +4,7 @@ import QbfElementFactory from "../QbfModule/QbfElementFactory"
 import QbForm from "../QbfModule/QbForm"
 
 import QbfGridAbstract from "./QbfGridAbstract"
+import QbfGridAppendRow from "./QbfGridAppendRow"
 import QbfGridColumn from "./QbfGridColumn"
 
 import { QbfBooleanValue } from "../QbfModule/QbfBoolean"
@@ -225,6 +226,7 @@ export default class QbfGridRow extends QbfElement {
         if (iconDomObject ) {
           iconDomObject.innerHTML += iconHtml
         }
+        QbfGridAppendRow.initWithDefaultValues(grid)
         grid.updateLayout()
       }
     }

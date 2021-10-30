@@ -354,12 +354,8 @@ export default class QbfGridAbstract extends QbfFramedElement {
   // -------------------------------------------------------------
   public init() {
   // -------------------------------------------------------------
-    if (this.appendRow) {
-      // appendQbfRow (must be set after all is declared)
-      this.appendQbfRow = new QbfGridAppendRow(this.qbForm, this, "QbfGrid_append_" + this.index,
-                                               "UNKNOWN", false, null )
-      this.appendQbfRow.isAppendRow = true
-    }
+    // appendQbfRow (must be set after all is declared)
+    QbfGridAppendRow.initWithDefaultValues(this)
     // TODO: Update display
     // QbfGridColumn.calculateAllColumnWidths( this )
     // QbfGridColumn.updateAllCssRules( this )
