@@ -451,8 +451,26 @@ export default class QbfGridAbstract extends QbfFramedElement {
   // ------------------------------------------------------------------------------
     let result: any = null
     if ( property === "value") {
-      result = []
+      // sort rows per storageIndex
+      const tmpArray: number[][] = []
+      let index = 0
       this.data.rowList.forEach( (row: QbfGridRow) => {
+        tmpArray.push([row.storageIndex, index++])
+      })
+      tmpArray.sort( (rowIds1: number[], rowIds2: number[]) => {
+        if (rowIds1[0] === rowIds2[0]) {
+          return 0
+        }
+        if (rowIds1[0] < rowIds2[0]) {
+          return -1
+        }
+        return 1
+      })
+      // Build result
+      result = []
+      tmpArray.forEach( (rowIds: number[]) => {
+        const rowIndex = rowIds[1]
+        const row = this.data.rowList[rowIndex]
         result.push(row.getProperty("value"))
       })
     }

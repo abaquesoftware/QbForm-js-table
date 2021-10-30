@@ -233,6 +233,7 @@ export default class QbfGridHeader {
       row.index = newRowList.length + 1
       newRowList.push(row)
     })
+
     grid.data.rowList = newRowList
 
     // Update display

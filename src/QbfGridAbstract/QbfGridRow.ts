@@ -239,6 +239,7 @@ export default class QbfGridRow extends QbfElement {
   // QbfGridRow: instance
   // **************************************
 
+  public storageIndex: number
   public index: number
   public cellMap: Map<string, (typeof QbfElement)>
   public isAppendRow: boolean
@@ -256,6 +257,7 @@ export default class QbfGridRow extends QbfElement {
   // --------------------------------------------------------------
     super(qbForm, parent, name, type, inTable, {})
     const grid = parent as QbfGridAbstract
+    this.storageIndex = (grid && grid.data.rowList ) ? grid.data.rowList.length : -1
     this.index = Number.parseInt(name, 10)
     // this.displayIndex = -1
     this.isAppendRow = false
@@ -360,7 +362,7 @@ export default class QbfGridRow extends QbfElement {
           html += "<div id=\"" + divId + "\""
           html += " class=\"_qbftdl-" + this.theme + "_lineNumber\""
           html += ">"
-          html += "" + this.index
+          html += "" + this.storageIndex + "-x-" + this.index
           html += "</div>"
         }
       } else {
