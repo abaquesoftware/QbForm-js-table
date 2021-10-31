@@ -362,7 +362,7 @@ export default class QbfGridRow extends QbfElement {
           html += "<div id=\"" + divId + "\""
           html += " class=\"_qbftdl-" + this.theme + "_lineNumber\""
           html += ">"
-          html += "" + this.storageIndex + "-x-" + this.index
+          html += "" + this.index
           html += "</div>"
         }
       } else {
