@@ -339,15 +339,16 @@ export default class QbfGridHeader {
   // ---------------------------------------------------------------
   public buildFilterHtml( filterExists: boolean): string {
   // ---------------------------------------------------------------
-    let html = ""
     const column = this.column
     const grid = column.grid
     const colIndex = column.index
 
     // header
+    let html = ""
     if ( this.qbfFilter && filterExists ) {
-      html += this.qbfFilter.buildCellHtml( )
-    } else {
+      html = this.qbfFilter.buildCellHtml( )
+    }
+    if (html === "") {
       const theme = column.grid.theme
       const className = "_qbftFilterCell-" + theme
       html += "<div class=\"" + className + "\"><div></div></div>"
